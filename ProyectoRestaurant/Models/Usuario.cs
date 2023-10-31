@@ -6,7 +6,7 @@ namespace ProyectoRestaurant.Models {
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public int ID { get; set; }
     public string Nombre { get; set; }
     public String Apellido { get; set; }
     public int dni{get; set; }
