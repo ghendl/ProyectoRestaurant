@@ -31,9 +31,25 @@ namespace ProyectoRestaurant
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "usuario",
+                    pattern: "Usuario/{action=Index}/{id?}",
+                    defaults: new { controller = "Usuario", action = "Index" });
+            });
+
+
+
+            /*  app.MapControllerRoute(
+              name: "usuarios",
+              pattern: "{controller=Usuario}/{action=Index}/{id?}");*/
+
             app.Run();
         }
     }
