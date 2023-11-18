@@ -13,7 +13,7 @@ namespace ProyectoRestaurant.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult login()
         {
             return View();
         }
