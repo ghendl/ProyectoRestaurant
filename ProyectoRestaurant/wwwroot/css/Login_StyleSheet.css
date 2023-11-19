@@ -5,7 +5,10 @@
     align-items: center;
 }
 body {
-    background: linear-gradient(to right, #FFE0B7, #FFD8A0);
+    background-image: url('../images/fondoPage.jpeg');
+    background-size: cover;
+    background-position: center;
+    /*background: linear-gradient(to right, #FFE0B7, #FFD8A0);*/
 }
 
 
@@ -127,3 +130,4 @@ body {
         background-color: red;
         color: white;
     }
+

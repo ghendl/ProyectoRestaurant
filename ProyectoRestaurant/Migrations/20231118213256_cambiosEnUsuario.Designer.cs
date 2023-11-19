@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoRestaurant.Context;
 
@@ -11,9 +12,11 @@ using ProyectoRestaurant.Context;
 namespace ProyectoRestaurant.Migrations
 {
     [DbContext(typeof(RestaurantDatabaseContext))]
-    partial class RestaurantDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231118213256_cambiosEnUsuario")]
+    partial class cambiosEnUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,10 +132,6 @@ namespace ProyectoRestaurant.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
