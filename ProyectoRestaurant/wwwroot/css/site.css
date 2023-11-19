@@ -5,14 +5,13 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    font-size: 16px;
   }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    background: linear-gradient(to right, #FFE0B7, #FFD8A0);
 }
 
-body {
-  margin-bottom: 60px;
-}
