@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoRestaurant.Context;
 
@@ -11,9 +12,11 @@ using ProyectoRestaurant.Context;
 namespace ProyectoRestaurant.Migrations
 {
     [DbContext(typeof(RestaurantDatabaseContext))]
-    partial class RestaurantDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231118213256_cambiosEnUsuario")]
+    partial class cambiosEnUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,32 +135,9 @@ namespace ProyectoRestaurant.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ID");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("ProyectoRestaurant.Models.Reserva", b =>
-                {
-                    b.HasOne("ProyectoRestaurant.Models.Fecha", "fechaReserva")
-                        .WithMany()
-                        .HasForeignKey("fechaReservaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProyectoRestaurant.Models.Mesa", "mesaReserva")
-                        .WithMany()
-                        .HasForeignKey("mesaReservaNumeroDeMesa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("fechaReserva");
-
-                    b.Navigation("mesaReserva");
                 });
 #pragma warning restore 612, 618
         }

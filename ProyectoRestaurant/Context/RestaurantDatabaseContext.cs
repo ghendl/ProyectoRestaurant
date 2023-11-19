@@ -15,8 +15,6 @@ namespace ProyectoRestaurant.Context
         {
         }
         public DbSet<Usuario> Usuarios { get; set; }
-    
-     
         public DbSet<ProyectoRestaurant.Models.Fecha>? Fecha { get; set; }
         public DbSet<ProyectoRestaurant.Models.Item>? Item { get; set; }
         public DbSet<ProyectoRestaurant.Models.Mesa>? Mesa { get; set; }

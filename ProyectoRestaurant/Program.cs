@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using ProyectoRestaurant.Context;
 using static System.Net.WebRequestMethods;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ProyectoRestaurant
 {
@@ -12,11 +12,15 @@ namespace ProyectoRestaurant
         public static void Main(string[] args)
         {
 
-
+            
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<RestaurantDatabaseContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString:RestaurantDBConnection"]));
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options =>
+              {
 
+              });
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
@@ -31,12 +35,15 @@ namespace ProyectoRestaurant
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseAuthentication();
+
+          
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=login}/{id?}");
+                    pattern: "{controller=Login}/{action=login}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "usuario",
