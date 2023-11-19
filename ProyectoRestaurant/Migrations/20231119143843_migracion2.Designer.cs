@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProyectoRestaurant.Context;
 
@@ -11,9 +12,11 @@ using ProyectoRestaurant.Context;
 namespace ProyectoRestaurant.Migrations
 {
     [DbContext(typeof(RestaurantDatabaseContext))]
-    partial class RestaurantDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231119143843_migracion2")]
+    partial class migracion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,17 +107,7 @@ namespace ProyectoRestaurant.Migrations
                     b.Property<int>("CantidadDePersonas")
                         .HasColumnType("int");
 
-                    b.Property<int>("fechaReservaID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("mesaReservaNumeroDeMesa")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("fechaReservaID");
-
-                    b.HasIndex("mesaReservaNumeroDeMesa");
 
                     b.ToTable("Reserva");
                 });
@@ -141,25 +134,6 @@ namespace ProyectoRestaurant.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("ProyectoRestaurant.Models.Reserva", b =>
-                {
-                    b.HasOne("ProyectoRestaurant.Models.Fecha", "fechaReserva")
-                        .WithMany()
-                        .HasForeignKey("fechaReservaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProyectoRestaurant.Models.Mesa", "mesaReserva")
-                        .WithMany()
-                        .HasForeignKey("mesaReservaNumeroDeMesa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("fechaReserva");
-
-                    b.Navigation("mesaReserva");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,5 +11,9 @@ namespace ProyectoRestaurant.Models
 
         public int CantidadDePersonas { get; set; }
 
+        public Fecha fechaReserva { get; set; }
+
+        public Mesa mesaReserva { get; set; }
+
     }
 }
