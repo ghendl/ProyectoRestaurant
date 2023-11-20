@@ -13,6 +13,7 @@ namespace ProyectoRestaurant.Controllers
             _logger = logger;
         }
 
+   
 
         public IActionResult Privacy()
         {

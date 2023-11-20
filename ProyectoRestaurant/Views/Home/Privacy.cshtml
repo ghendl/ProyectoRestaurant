@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +17,11 @@
                 <h1>Que desea hacer?</h1>
             </div>
             <div style="display:flex; width:90%; gap:25px">
-            <div class="botonOpciones">
+            <button class="botonOpciones" id="verMenu">
                 <h3>
                     ver menu
                  </h3>
-                </div>
+                </button>
             <div class="botonOpciones">
                 <h3>
                    reservar
@@ -29,3 +30,8 @@
             </div>
         </div>
     </div>
+<script>
+    document.getElementById('verMenu').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Menu", "Menu")';
+    });
+</script>

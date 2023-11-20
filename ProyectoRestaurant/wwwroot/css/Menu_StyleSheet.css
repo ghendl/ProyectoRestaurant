@@ -1,0 +1,38 @@
+﻿.contenedorGeneral {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(to right, #FFE0B7, #FFD8A0);
+}
+.tarjetaMenu {
+    background-color:red;
+    height:100%;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.price {
+    font-weight: bold;
+    color: #007BFF;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+}
