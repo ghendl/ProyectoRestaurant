@@ -61,6 +61,29 @@ namespace ProyectoRestaurant.Migrations
                     b.ToTable("Item");
                 });
 
+            modelBuilder.Entity("ProyectoRestaurant.Models.Menu", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Precio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Menus");
+                });
+
             modelBuilder.Entity("ProyectoRestaurant.Models.Mesa", b =>
                 {
                     b.Property<int>("NumeroDeMesa")
@@ -104,7 +127,17 @@ namespace ProyectoRestaurant.Migrations
                     b.Property<int>("CantidadDePersonas")
                         .HasColumnType("int");
 
+                    b.Property<int>("fechaReservaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("mesaReservaNumeroDeMesa")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("fechaReservaID");
+
+                    b.HasIndex("mesaReservaNumeroDeMesa");
 
                     b.ToTable("Reserva");
                 });

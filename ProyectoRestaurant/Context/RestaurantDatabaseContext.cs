@@ -20,5 +20,6 @@ namespace ProyectoRestaurant.Context
         public DbSet<ProyectoRestaurant.Models.Mesa>? Mesa { get; set; }
         public DbSet<ProyectoRestaurant.Models.Pedido>? Pedido { get; set; }
         public DbSet<ProyectoRestaurant.Models.Reserva>? Reserva { get; set; }
+        public DbSet<ProyectoRestaurant.Models.Menu> Menus { get; set; }
     }
 }
