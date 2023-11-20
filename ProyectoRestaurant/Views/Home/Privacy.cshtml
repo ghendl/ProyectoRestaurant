@@ -21,17 +21,31 @@
                 <h3>
                     ver menu
                  </h3>
-                </button>
-            <div class="botonOpciones">
+            </button>
+            <button class="botonOpciones" id="reservar">
                 <h3>
                    reservar
                 </h3>        
-                </div>
+            </button>
             </div>
         </div>
+
     </div>
+<button class="button" id="volver">
+    Volver
+</button>
 <script>
     document.getElementById('verMenu').addEventListener('click', function () {
-        window.location.href = '@Url.Action("Menu", "Menu")';
+        window.location.href = '@Url.Action("Menu", "Home")';
     });
+
+    document.getElementById('reservar').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Index", "Reserva")'
+    });
+
+    document.getElementById('volver').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Login", "Login")';
+    });
+
+
 </script>

@@ -1,0 +1,79 @@
+﻿@model List<Menu>
+@{
+    ViewData["Title"] = "Menu";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Menu_StyleSheet.css">
+    <title>Menu</title>
+</head>
+<div style=" height: 100%;   background: linear-gradient(to right, #FFE0B7, #FFD8A0);">
+
+    <div style="display:flex; justify-content:center;box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;">
+        <h1>Menú</h1>
+    </div>
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+    @if (User.Identity.Name == "admin")
+    {
+        <div class="contenedorGeneral">
+            <div class="tarjetaMenu">
+
+               
+
+                @foreach (var menu in Model)
+                {
+                    <div class="menu-item">
+                        <h2>@menu.Nombre</h2>
+                        <form asp-action="UpdatePrice" method="post">
+                            <input type="hidden" asp-for="@menu.ID" value="@menu.ID" />
+                            <div class="info">
+                                <p class="description">@menu.Descripcion</p>
+                                <label for="Precio"></label>
+                                <input style="width:100px" type="number" asp-for="@menu.Precio" />
+                            </div>
+                            <button type="submit">Guardar Cambios</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    @if (User.Identity.Name == "user")
+    {
+        
+    <div class="contenedorGeneral">
+        <div class="tarjetaMenu">
+        @foreach (var menu in Model)
+        {
+            <div class="menu-item">
+                <h2>@menu.Nombre</h2>
+                <div class="info">
+                    <p class="description">@menu.Descripcion</p>
+                    <span class="price">$@menu.Precio</span>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+    }
+    <button class="button" id="volver">
+        Volver
+    </button>
+
+</div>
+
+<script>
+    document.getElementById('volver').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Privacy", "Home")';
+    });
+
+</script>

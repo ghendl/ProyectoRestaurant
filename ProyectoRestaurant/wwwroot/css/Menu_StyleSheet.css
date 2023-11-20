@@ -1,30 +1,32 @@
 ﻿.contenedorGeneral {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    background: linear-gradient(to right, #FFE0B7, #FFD8A0);
-}
-.tarjetaMenu {
-    background-color:red;
-    height:100%;
+    justify-content: space-evenly;
 }
 
-.menu-item {
+.tarjetaMenu {
     display: flex;
-    flex-direction: column;
-    margin: 10px;
-    padding: 10px;
-    width: 300px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #d4d4d4be;
+    border-radius: 20px;
+    padding:20px;
+    height: 100%;
+    margin: 39px 0px 38px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
+
 
 h2 {
     margin-bottom: 5px;
+    font-size: 24px;
 }
 
 .info {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom:10px;
 }
 
 .price {
@@ -36,3 +38,22 @@ h2 {
     font-size: 14px;
     color: #555;
 }
+.menu-item {
+    background-color: whitesmoke;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+    .menu-item:hover {
+        transform: translateY(2px);
+    }
+
+
+
+
+
