@@ -7,13 +7,11 @@ namespace ProyectoRestaurant.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
-
-        public int CantidadDePersonas { get; set; }
-
-        public Fecha fechaReserva { get; set; }
-
-        public Mesa mesaReserva { get; set; }
+        public int Id { get; set; }
+        public string? Mesa { get; set; }
+        public DateTime? Dia { get; set; }
+        public string? Hora { get; set; }
+        public int? Personas { get; set; }
 
     }
 }

@@ -104,7 +104,7 @@ namespace ProyectoRestaurant.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MesaExists(mesa.NumeroDeMesa))
+                    if (!MesaExists(mesa.Mesa))
                     {
                         return NotFound();
                     }

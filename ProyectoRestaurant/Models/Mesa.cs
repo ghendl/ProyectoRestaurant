@@ -11,7 +11,7 @@ namespace ProyectoRestaurant.Models
 
         public int MaximoPersonas { get; set; }
 
-        public Boolean Libre { get; set; } 
+        public Boolean? Libre { get; set; } 
 
     }
 }
