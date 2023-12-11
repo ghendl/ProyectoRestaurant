@@ -23,7 +23,7 @@
     }
     @if (User.Identity.Name == "admin")
     {
-        <div class="contenedorGeneral">
+        <div class="contenedorGeneral" style="flex-direction:column">
             <div class="tarjetaMenu">
 
                
@@ -41,9 +41,16 @@
                             </div>
                             <button type="submit">Guardar Cambios</button>
                         </form>
+                        <div>
+                            <a asp-action="DeleteMenu" asp-route-id="@menu.ID">Eliminar</a>
+                        </div>
                     </div>
+                  
                 }
             </div>
+
+            <a asp-action="CrearMenu" class="btn btn-primary">Agregar Menú</a>
+
         </div>
     }
 

@@ -35,9 +35,9 @@ namespace ProyectoRestaurant.Controllers
         [HttpPost]
         public IActionResult Reservar(Reserva reserva)
         {
-            if (MesaEstaOcupada(reserva.MesaNumero, reserva.Dia, reserva.Hora))
+            if (MesaEstaOcupada(reserva.MesaNumero, reserva.Dia))
             {
-                TempData["ErrorMessage"] = "Lo siento, la mesa ya está reservada en esa hora. Por favor, elige otra hora o mesa.";
+                TempData["ErrorMessage"] = "Lo siento, la mesa ya está reservada en ese día. Por favor, elige otra mesa u otro día.";
                 return RedirectToAction("Index");
             }
 
@@ -52,10 +52,10 @@ namespace ProyectoRestaurant.Controllers
 
         }
 
-        private bool MesaEstaOcupada(string mesa, DateTime dia, string hora)
+        private bool MesaEstaOcupada(string mesa, DateTime dia)
         {
 
-            var mesaOcupada = _context.Reservas.Any(r => r.MesaNumero == mesa && r.Dia == dia && r.Hora == hora);
+            var mesaOcupada = _context.Reservas.Any(r => r.MesaNumero == mesa && r.Dia == dia);
 
             return mesaOcupada;
         }
