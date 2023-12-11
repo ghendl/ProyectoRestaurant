@@ -6,25 +6,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProyectoRestaurant.Migrations
 {
     /// <inheritdoc />
-    public partial class menu : Migration
+    public partial class Reserva : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
 
+
+
+ 
+
             migrationBuilder.CreateTable(
-                name: "Menus",
+                name: "Reservas",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Precio = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    MesaNumero = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Dia = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Hora = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CantidadPersonas = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Menus", x => x.ID);
+                    table.PrimaryKey("PK_Reservas", x => x.Id);
                 });
 
         }
@@ -32,11 +37,11 @@ namespace ProyectoRestaurant.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            
+
+
 
             migrationBuilder.DropTable(
-                name: "Menus");
-
+                name: "Reservas");
         }
     }
 }

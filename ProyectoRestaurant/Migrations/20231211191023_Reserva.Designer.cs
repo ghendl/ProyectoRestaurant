@@ -12,8 +12,8 @@ using ProyectoRestaurant.Context;
 namespace ProyectoRestaurant.Migrations
 {
     [DbContext(typeof(RestaurantDatabaseContext))]
-    [Migration("20231120194355_menu")]
-    partial class menu
+    [Migration("20231211191023_Reserva")]
+    partial class Reserva
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,39 +73,17 @@ namespace ProyectoRestaurant.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Precio")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.ToTable("Menus");
-                });
-
-            modelBuilder.Entity("ProyectoRestaurant.Models.Mesa", b =>
-                {
-                    b.Property<int>("NumeroDeMesa")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NumeroDeMesa"));
-
-                    b.Property<bool>("Libre")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MaximoPersonas")
-                        .HasColumnType("int");
-
-                    b.HasKey("NumeroDeMesa");
-
-                    b.ToTable("Mesa");
                 });
 
             modelBuilder.Entity("ProyectoRestaurant.Models.Pedido", b =>
@@ -123,28 +101,27 @@ namespace ProyectoRestaurant.Migrations
 
             modelBuilder.Entity("ProyectoRestaurant.Models.Reserva", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CantidadDePersonas")
+                    b.Property<int?>("CantidadPersonas")
                         .HasColumnType("int");
 
-                    b.Property<int>("fechaReservaID")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("Dia")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("mesaReservaNumeroDeMesa")
-                        .HasColumnType("int");
+                    b.Property<string>("Hora")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<string>("MesaNumero")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("fechaReservaID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("mesaReservaNumeroDeMesa");
-
-                    b.ToTable("Reserva");
+                    b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("ProyectoRestaurant.Models.Usuario", b =>
@@ -177,25 +154,6 @@ namespace ProyectoRestaurant.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("ProyectoRestaurant.Models.Reserva", b =>
-                {
-                    b.HasOne("ProyectoRestaurant.Models.Fecha", "fechaReserva")
-                        .WithMany()
-                        .HasForeignKey("fechaReservaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProyectoRestaurant.Models.Mesa", "mesaReserva")
-                        .WithMany()
-                        .HasForeignKey("mesaReservaNumeroDeMesa")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("fechaReserva");
-
-                    b.Navigation("mesaReserva");
                 });
 #pragma warning restore 612, 618
         }
