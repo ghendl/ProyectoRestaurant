@@ -1,0 +1,54 @@
+﻿@model ProyectoRestaurant.Models.Menu
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Menu_StyleSheet.css">
+    <title>Menu</title>
+</head>
+<div style=" height: 100%;   background: linear-gradient(to right, #FFE0B7, #FFD8A0);">
+
+    <div style="display:flex; justify-content:center;box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;">
+        <h1>Agregar Menú</h1>
+    </div>
+
+
+    <div class="contenedorGeneral">
+        <div class="tarjetaMenu">
+            <form asp-action="CrearMenu" method="post">
+                <!-- Agrega los campos y controles para ingresar los detalles del nuevo menú -->
+                <div class="menu-item">
+                    <div>
+                        <label asp-for="Nombre"></label>
+                        <input asp-for="Nombre" required />
+                        <span asp-validation-for="Nombre"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Descripcion"></label>
+                        <input asp-for="Descripcion" required />
+                        <span asp-validation-for="Descripcion"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Precio"></label>
+                        <input asp-for="Precio" type="number" required />
+                        <span asp-validation-for="Precio"></span>
+                    </div>
+                </div>
+                <!-- Agrega otros campos según sea necesario -->
+
+                <button type="submit">Guardar Menú</button>
+            </form>
+        </div>
+    </div>
+    <button class="button" id="volver">
+        Volver
+    </button>
+
+</div>
+
+<script>
+    document.getElementById('volver').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Menu", "Home")';
+    });
+
+</script>
