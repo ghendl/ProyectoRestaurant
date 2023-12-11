@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    var reservaErrorMessage = ViewBag.ReservaErrorMessage as string;
+    var reservaExitosaMessage = ViewBag.ReservaExitosaMessage as string;
 }
 <head>
     <meta charset="UTF-8">
@@ -10,6 +12,23 @@
     <title>Reserva</title>
 </head>
 <body>
+
+
+    @if (!string.IsNullOrEmpty(reservaErrorMessage))
+    {
+        <div class="alert alert-danger">
+            @reservaErrorMessage
+        </div>
+    }
+
+    <!-- Muestra el mensaje de éxito si existe -->
+    @if (!string.IsNullOrEmpty(reservaExitosaMessage))
+    {
+        <div class="alert alert-success">
+            @reservaExitosaMessage
+        </div>
+    }
+
 
     <div style="display:flex; justify-content:center">
         <div style="width:50%;padding:30px; text-align:center;background-color:#ddaf5f;border-radius:0px 0px 30px 30px">
@@ -22,15 +41,16 @@
     flex-direction: column;
     align-items: center;margin-top: 3%;">
 
-        <form class="form">
+        <form asp-action="Reservar" method="post" class="form">
             <div class="field">
                 <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 </svg>
                 <label for="mesa">Mesa:</label>
-                <select id="mesa" name="mesa" required>
+                <select id="mesaNumero" name="mesaNumero" required>
                     <option value="mesa1">Mesa 1</option>
                     <option value="mesa2">Mesa 2</option>
                     <option value="mesa3">Mesa 3</option>
+                    <option value="mesa3">Mesa 4</option>
             
                 </select>
             </div>
@@ -51,8 +71,10 @@
                 <label for="hora">Hora:</label>
                 <select id="hora" name="hora" required>
                     <option value="12:00">12:00 PM</option>
-                    <option value="13:00">1:00 PM</option>
-                    <option value="14:00">2:00 PM</option>
+                    <option value="13:00">13:00 PM</option>
+                    <option value="14:00">14:00 PM</option>
+                    <option value="14:00">15:00 PM</option>
+                    <option value="14:00">16:00 PM</option>
               
                 </select>
             </div>
@@ -62,18 +84,31 @@
                 </svg>
               
                 <label for="personas">Número de Personas:</label>
-                <input type="number" id="personas" name="personas" min="1" required>
+                <input type="number" id="cantidadpersonas" name="cantidadpersonas" min="1" required>
             </div>
 
             <div class="btn">
-                <button class="button1">Reservar</button>
+                <button type="submit" class="button1">Reservar</button>
             </div>
 
             
 
            
         </form>
-    <</div>
+    <button class="button" id="volver">
+        Volver
+    </button>
+    </div>
 </body>
+
+<script>
+
+
+    document.getElementById('volver').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Privacy", "Home")';
+    });
+
+
+</script>
    
 

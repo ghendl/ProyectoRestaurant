@@ -10,7 +10,7 @@ namespace ProyectoRestaurant.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? MesaNumero { get; set; }
-        public DateTime? Dia { get; set; }
+        public DateTime Dia { get; set; }
         public string? Hora { get; set; }
         public int? CantidadPersonas { get; set; }
 

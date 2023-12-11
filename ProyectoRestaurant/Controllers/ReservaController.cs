@@ -22,7 +22,42 @@ namespace ProyectoRestaurant.Controllers
         // GET: Reservas
         public async Task<IActionResult> Index()
         {
+            string reservaErrorMessage = TempData["ErrorMessage"] as string;
+            ViewBag.ReservaErrorMessage = reservaErrorMessage;
+
+            string reservaExitosaMessage = TempData["SuccessMessage"] as string;
+            ViewBag.ReservaExitosaMessage = reservaExitosaMessage;
+
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Reservar(Reserva reserva)
+        {
+            if (MesaEstaOcupada(reserva.MesaNumero, reserva.Dia, reserva.Hora))
+            {
+                TempData["ErrorMessage"] = "Lo siento, la mesa ya está reservada en esa hora. Por favor, elige otra hora o mesa.";
+                return RedirectToAction("Index");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Reservas.Add(reserva);
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Se ha reservado su mesa correctamente!";
+                return RedirectToAction("Index");
+            }
+            return View();
+
+        }
+
+        private bool MesaEstaOcupada(string mesa, DateTime dia, string hora)
+        {
+
+            var mesaOcupada = _context.Reservas.Any(r => r.MesaNumero == mesa && r.Dia == dia && r.Hora == hora);
+
+            return mesaOcupada;
         }
     }
 }
